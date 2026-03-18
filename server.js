@@ -260,6 +260,20 @@ app.post("/products", (req, res) => {
     res.status(400).json({ msg: "Fill in all product data" });
   }
 
+  app.patch('/product:id', (req,res)=>{
+    const id= parseInt(req.params.id)
+
+    const {name, category, price,quantityAvailable, description, imageUrl}= req.body
+
+    const product=products.find(p=>p.id==id)
+    product={
+      name:name || product.name,
+      category: category || product.category
+    }
+
+    
+  })
+
   const newProduct = {
     id: products.length + 1,
     name,
